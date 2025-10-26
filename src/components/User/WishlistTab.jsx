@@ -52,7 +52,7 @@ const WishlistTab = ({ wishlist, setWishlist, user, navigate }) => {
                 />
                 <div className="card-body d-flex flex-column">
                   <h6 className="card-title">{item.name}</h6>
-                  <p className="card-text text-muted">${parseFloat(item.price).toFixed(2)}</p>
+                  <p className="card-text text-muted">₹ {parseFloat(item.price).toFixed(2)}</p>
                   <div className="mt-auto d-grid gap-2">
                     <button 
                       className="btn btn-danger btn-sm"

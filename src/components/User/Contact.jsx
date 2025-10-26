@@ -23,13 +23,13 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
-      
+
       // Reset status after 5 seconds
       setTimeout(() => setSubmitStatus(null), 5000);
     }, 2000);
@@ -39,16 +39,16 @@ const Contact = () => {
     {
       icon: "📧",
       title: "Email Us",
-      details: "support@sandysstore.com",
+      details: "support@shopcart.com",
       description: "Send us an email anytime",
-      link: "mailto:support@sandysstore.com"
+      link: "mailto:support@shopcart.com"
     },
     {
       icon: "📞",
       title: "Call Us",
-      details: "+1 (555) 123-4567",
+      details: "+91 9674326780",
       description: "Mon-Fri from 9am to 6pm",
-      link: "tel:+15551234567"
+      link: "tel:+91 9674326780"
     },
     {
       icon: "💬",
@@ -111,8 +111,8 @@ const Contact = () => {
                   <div className="card-body p-4">
                     <div className="display-4 mb-3">{method.icon}</div>
                     <h5 className="fw-bold mb-3">{method.title}</h5>
-                    <a 
-                      href={method.link} 
+                    <a
+                      href={method.link}
                       className="text-primary fw-semibold text-decoration-none d-block mb-2"
                     >
                       {method.details}
@@ -135,13 +135,13 @@ const Contact = () => {
               <div className="card border-0 shadow-sm">
                 <div className="card-body p-4 p-md-5">
                   <h3 className="fw-bold mb-4">Send us a Message</h3>
-                  
+
                   {submitStatus === "success" && (
                     <div className="alert alert-success alert-dismissible fade show" role="alert">
                       <strong>Thank you!</strong> Your message has been sent successfully. We'll get back to you within 24 hours.
-                      <button 
-                        type="button" 
-                        className="btn-close" 
+                      <button
+                        type="button"
+                        className="btn-close"
                         onClick={() => setSubmitStatus(null)}
                       ></button>
                     </div>
@@ -236,14 +236,14 @@ const Contact = () => {
               <div className="card border-0 shadow-sm">
                 <div className="card-body p-4">
                   <h5 className="fw-bold mb-4">Get in Touch</h5>
-                  
+
                   <div className="mb-4">
                     <h6 className="fw-semibold mb-3">📍 Office Address</h6>
                     <p className="text-muted mb-0">
                       123 Commerce Street<br />
-                      Business District<br />
-                      City, State 12345<br />
-                      United States
+                      Coimbatore<br />
+                      TamilNadu<br />
+                      India
                     </p>
                   </div>
 
@@ -300,7 +300,7 @@ const Contact = () => {
                 <h2 className="fw-bold mb-3">Frequently Asked Questions</h2>
                 <p className="text-muted lead">Quick answers to common questions</p>
               </div>
-              
+
               <div className="accordion" id="faqAccordion">
                 {faqs.map((faq, index) => (
                   <div key={index} className="accordion-item border-0 mb-3 shadow-sm">

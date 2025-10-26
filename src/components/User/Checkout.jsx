@@ -585,7 +585,7 @@ const Checkout = () => {
                     <h5>Cash on Delivery</h5>
                     <p className="text-muted">
                       Pay with cash when your order is delivered. 
-                      An additional $2.00 processing fee will be added.
+                      An additional ₹ 2.00 processing fee will be added.
                     </p>
                   </div>
                 )}
@@ -604,7 +604,7 @@ const Checkout = () => {
                     Processing Your Order...
                   </>
                 ) : (
-                  `Place Order - $${calculateTotal()}`
+                  `Place Order - ₹ ${calculateTotal()}`
                 )}
               </button>
             </div>
@@ -641,7 +641,7 @@ const Checkout = () => {
                       <div className="d-flex align-items-center justify-content-between">
                         <div className="d-flex align-items-center">
                           <span className="fw-bold text-primary me-2">
-                            ${product.price}
+                            ₹ {product.price}
                           </span>
                           <div className="btn-group btn-group-sm">
                             <button 
@@ -663,7 +663,7 @@ const Checkout = () => {
                           </div>
                         </div>
                         <span className="fw-bold">
-                          ${(product.price * quantity).toFixed(2)}
+                          ₹ {(product.price * quantity).toFixed(2)}
                         </span>
                       </div>
                     </div>
@@ -690,11 +690,11 @@ const Checkout = () => {
                       <div className="flex-grow-1">
                         <small className="fw-semibold d-block">{item.name}</small>
                         <small className="text-muted">
-                          Qty: {item.quantity} × ${item.price}
+                          Qty: {item.quantity} × ₹ {item.price}
                         </small>
                       </div>
                       <small className="fw-bold">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        ₹ {(item.price * item.quantity).toFixed(2)}
                       </small>
                     </div>
                   ))}
@@ -705,11 +705,11 @@ const Checkout = () => {
               <div className="border-top pt-3">
                 <div className="d-flex justify-content-between mb-2">
                   <span>Subtotal:</span>
-                  <span>${calculateSubtotal()}</span>
+                  <span>₹ {calculateSubtotal()}</span>
                 </div>
                 <div className="d-flex justify-content-between mb-2">
                   <span>Tax (10%):</span>
-                  <span>${calculateTax()}</span>
+                  <span>₹ {calculateTax()}</span>
                 </div>
                 <div className="d-flex justify-content-between mb-2">
                   <span>Shipping:</span>
@@ -717,21 +717,21 @@ const Checkout = () => {
                     {calculateShipping() === "0.00" ? (
                       <span className="text-success">FREE</span>
                     ) : (
-                      `$${calculateShipping()}`
+                      `₹ ${calculateShipping()}`
                     )}
                   </span>
                 </div>
                 {activePaymentTab === 'cash-on-delivery' && (
                   <div className="d-flex justify-content-between mb-2">
                     <span>COD Fee:</span>
-                    <span>$2.00</span>
+                    <span>₹ 2.00</span>
                   </div>
                 )}
                 <hr />
                 <div className="d-flex justify-content-between fw-bold fs-5">
                   <span>Total:</span>
                   <span className="text-primary">
-                    ${activePaymentTab === 'cash-on-delivery' 
+                    ₹ {activePaymentTab === 'cash-on-delivery' 
                       ? (parseFloat(calculateTotal()) + 2).toFixed(2) 
                       : calculateTotal()
                     }

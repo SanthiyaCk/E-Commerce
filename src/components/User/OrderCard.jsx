@@ -41,7 +41,7 @@ const OrderCard = ({ order }) => {
             <span className={getStatusBadge(order.status)}>
               {order.status?.toUpperCase() || 'PROCESSING'}
             </span>
-            <span className="fw-bold text-primary fs-5">${parseFloat(order.total).toFixed(2)}</span>
+            <span className="fw-bold text-primary fs-5">₹ {parseFloat(order.total).toFixed(2)}</span>
           </div>
         </div>
         
@@ -70,7 +70,7 @@ const OrderCard = ({ order }) => {
                       <div className="d-flex align-items-center mb-3">
                         <FaTag className="text-muted me-2" />
                         <span className="text-primary fw-semibold fs-5">
-                          ${parseFloat(singleProduct.price).toFixed(2)}
+                          ₹ {parseFloat(singleProduct.price).toFixed(2)}
                         </span>
                       </div>
                       <div className="d-flex gap-4 text-muted">
@@ -81,7 +81,7 @@ const OrderCard = ({ order }) => {
                         <div>
                           <small className="fw-semibold">Item Total</small>
                           <div className="fw-bold text-dark">
-                            ${(parseFloat(singleProduct.price) * parseInt(singleProduct.quantity)).toFixed(2)}
+                            ₹ {(parseFloat(singleProduct.price) * parseInt(singleProduct.quantity)).toFixed(2)}
                           </div>
                         </div>
                       </div>
@@ -96,7 +96,7 @@ const OrderCard = ({ order }) => {
                     </h6>
                     <div className="d-flex justify-content-between mb-2">
                       <small>Item Price:</small>
-                      <small>${parseFloat(singleProduct.price).toFixed(2)}</small>
+                      <small>₹ {parseFloat(singleProduct.price).toFixed(2)}</small>
                     </div>
                     <div className="d-flex justify-content-between mb-2">
                       <small>Quantity:</small>
@@ -104,22 +104,22 @@ const OrderCard = ({ order }) => {
                     </div>
                     <div className="d-flex justify-content-between mb-2">
                       <small>Subtotal:</small>
-                      <small>${parseFloat(order.subtotal).toFixed(2)}</small>
+                      <small>₹ {parseFloat(order.subtotal).toFixed(2)}</small>
                     </div>
                     <div className="d-flex justify-content-between mb-2">
                       <small>Tax:</small>
-                      <small>${parseFloat(order.tax).toFixed(2)}</small>
+                      <small>₹ {parseFloat(order.tax).toFixed(2)}</small>
                     </div>
                     <div className="d-flex justify-content-between mb-2">
                       <small>Shipping:</small>
                       <small className={order.shipping === "0.00" ? "text-success" : ""}>
-                        {order.shipping === "0.00" ? "FREE" : `$${parseFloat(order.shipping).toFixed(2)}`}
+                        {order.shipping === "0.00" ? "FREE" : `₹ ${parseFloat(order.shipping).toFixed(2)}`}
                       </small>
                     </div>
                     <hr className="my-2" />
                     <div className="d-flex justify-content-between fw-bold">
                       <span>Total:</span>
-                      <span className="text-primary">${parseFloat(order.total).toFixed(2)}</span>
+                      <span className="text-primary">₹ {parseFloat(order.total).toFixed(2)}</span>
                     </div>
                   </div>
                 </div>
@@ -151,10 +151,10 @@ const OrderCard = ({ order }) => {
                         <p className="mb-1 fw-semibold small">{item.name}</p>
                         <div className="d-flex justify-content-between align-items-center">
                           <small className="text-muted">
-                            Qty: {item.quantity} × ${parseFloat(item.price).toFixed(2)}
+                            Qty: {item.quantity} × ₹ {parseFloat(item.price).toFixed(2)}
                           </small>
                           <small className="fw-bold">
-                            ${(parseFloat(item.price) * parseInt(item.quantity)).toFixed(2)}
+                            ₹ {(parseFloat(item.price) * parseInt(item.quantity)).toFixed(2)}
                           </small>
                         </div>
                       </div>
@@ -176,11 +176,11 @@ const OrderCard = ({ order }) => {
                     <div className="row">
                       <div className="col-6">
                         <small className="text-muted">Subtotal:</small>
-                        <div className="fw-semibold">${parseFloat(order.subtotal).toFixed(2)}</div>
+                        <div className="fw-semibold">₹ {parseFloat(order.subtotal).toFixed(2)}</div>
                       </div>
                       <div className="col-6">
                         <small className="text-muted">Tax:</small>
-                        <div className="fw-semibold">${parseFloat(order.tax).toFixed(2)}</div>
+                        <div className="fw-semibold">₹ {parseFloat(order.tax).toFixed(2)}</div>
                       </div>
                       <div className="col-6">
                         <small className="text-muted">Shipping:</small>
@@ -194,7 +194,7 @@ const OrderCard = ({ order }) => {
                       </div>
                       <div className="col-6">
                         <small className="text-muted">Total:</small>
-                        <div className="fw-bold text-primary fs-5">${parseFloat(order.total).toFixed(2)}</div>
+                        <div className="fw-bold text-primary fs-5">₹ {parseFloat(order.total).toFixed(2)}</div>
                       </div>
                     </div>
                   </div>

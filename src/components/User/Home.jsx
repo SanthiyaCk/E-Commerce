@@ -73,11 +73,6 @@ export default function Home() {
                 Discover amazing products at unbeatable prices. From electronics to fashion, 
                 we have everything you need to upgrade your lifestyle.
               </p>
-              <div className="d-flex gap-3 flex-wrap">
-                <Link to="/products" className="btn btn-primary-gradient">
-                  Shop Now 🛒
-                </Link>
-              </div>
             </div>
             <div className="col-lg-6 text-center fade-in-up">
               <img 
@@ -87,6 +82,11 @@ export default function Home() {
                 style={{ maxHeight: "400px" }}
               />
             </div>
+            <div className="d-flex gap-3 flex-wrap">
+                <Link to="/products" className="btn btn-primary-gradient">
+                  Shop Now 🛒
+                </Link>
+              </div>
           </div>
         </div>
       </section>

@@ -84,7 +84,7 @@ const CartDetailsView = ({
                   
                   <div className="mb-4">
                     <h3 className="text-primary fw-bold mb-2">
-                      ${parseFloat(selectedProduct.price).toFixed(2)}
+                      ₹ {parseFloat(selectedProduct.price).toFixed(2)}
                     </h3>
                     <div className="d-flex align-items-center mb-3">
                       <span className="badge bg-success me-2">In Stock</span>
@@ -102,7 +102,7 @@ const CartDetailsView = ({
                       <div className="col-6">
                         <small className="text-muted">Item Total</small>
                         <div className="fw-bold fs-5 text-primary">
-                          ${(parseFloat(selectedProduct.price) * parseInt(selectedProduct.quantity)).toFixed(2)}
+                          ₹ {(parseFloat(selectedProduct.price) * parseInt(selectedProduct.quantity)).toFixed(2)}
                         </div>
                       </div>
                     </div>
@@ -212,7 +212,7 @@ const CartDetailsView = ({
                     </div>
                     <div>
                       <span className="fw-bold me-3">
-                        ${(parseFloat(item.price) * parseInt(item.quantity)).toFixed(2)}
+                        ₹ {(parseFloat(item.price) * parseInt(item.quantity)).toFixed(2)}
                       </span>
                       <button 
                         className="btn btn-outline-primary btn-sm me-2"
@@ -233,7 +233,7 @@ const CartDetailsView = ({
             ))}
             
             <div className="text-center mt-4">
-              <h4 className="mb-3">Total: ${calculateCartSubtotal()}</h4>
+              <h4 className="mb-3">Total: ₹ {calculateCartSubtotal()}</h4>
               <button 
                 className="btn btn-success btn-lg px-5 me-3"
                 onClick={onNavigateToCheckout}
@@ -297,7 +297,7 @@ const CartDetailsView = ({
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="d-flex align-items-center">
                         <small className="text-muted me-3">
-                          Qty: {item.quantity} × ${parseFloat(item.price).toFixed(2)}
+                          Qty: {item.quantity} × ₹ {parseFloat(item.price).toFixed(2)}
                         </small>
                         <div className="btn-group btn-group-sm">
                           <button 
@@ -317,7 +317,7 @@ const CartDetailsView = ({
                       </div>
                       <div>
                         <span className="fw-bold me-3">
-                          ${(parseFloat(item.price) * parseInt(item.quantity)).toFixed(2)}
+                          ₹ {(parseFloat(item.price) * parseInt(item.quantity)).toFixed(2)}
                         </span>
                         <button 
                           className="btn btn-outline-primary btn-sm me-2"
@@ -352,11 +352,11 @@ const CartDetailsView = ({
             <div className="card-body">
               <div className="d-flex justify-content-between mb-2">
                 <span>Subtotal:</span>
-                <span>${calculateCartSubtotal()}</span>
+                <span>₹ {calculateCartSubtotal()}</span>
               </div>
               <div className="d-flex justify-content-between mb-2">
                 <span>Tax (10%):</span>
-                <span>${calculateTax()}</span>
+                <span>₹ {calculateTax()}</span>
               </div>
               <div className="d-flex justify-content-between mb-2">
                 <span>Shipping:</span>
@@ -371,7 +371,7 @@ const CartDetailsView = ({
               <hr />
               <div className="d-flex justify-content-between fw-bold fs-5">
                 <span>Total:</span>
-                <span className="text-primary">${calculateFinalTotal()}</span>
+                <span className="text-primary">₹ {calculateFinalTotal()}</span>
               </div>
               
               <div className="mt-4 d-grid gap-2">

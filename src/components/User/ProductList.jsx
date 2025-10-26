@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaShoppingCart, FaHeart, FaSearch, FaFilter, FaExclamationTriangle } from "react-icons/fa";
+import { FaShoppingCart, FaHeart, FaSearch, FaFilter, FaExclamationTriangle, FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 import { addToCart, addToWishlist } from "../../utils/orderStorage";
 import { auth } from "../../utils/firebaseConfig";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ const ProductList = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [sortOption, setSortOption] = useState("");
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
   const user = auth.currentUser;
@@ -19,8 +20,8 @@ const ProductList = () => {
   }, []);
 
   useEffect(() => {
-    filterProducts();
-  }, [products, searchTerm, selectedCategory]);
+    filterAndSortProducts();
+  }, [products, searchTerm, selectedCategory, sortOption]);
 
   const loadProducts = async () => {
     setLoading(true);
@@ -89,8 +90,8 @@ const ProductList = () => {
     }
   };
 
-  const filterProducts = () => {
-    let filtered = products;
+  const filterAndSortProducts = () => {
+    let filtered = [...products];
 
     // Apply search filter
     if (searchTerm) {
@@ -106,7 +107,36 @@ const ProductList = () => {
       filtered = filtered.filter(product => product.category === selectedCategory);
     }
 
+    // Apply sorting
+    switch (sortOption) {
+      case "price_low_high":
+        filtered.sort((a, b) => a.price - b.price);
+        break;
+      case "price_high_low":
+        filtered.sort((a, b) => b.price - a.price);
+        break;
+      case "name_asc":
+        filtered.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "name_desc":
+        filtered.sort((a, b) => b.title.localeCompare(b.title));
+        break;
+      case "rating_high_low":
+        filtered.sort((a, b) => (b.rating?.rate || 0) - (a.rating?.rate || 0));
+        break;
+      case "stock_high_low":
+        filtered.sort((a, b) => b.stock - a.stock);
+        break;
+      default:
+        // Default sorting - keep original order
+        break;
+    }
+
     setFilteredProducts(filtered);
+  };
+
+  const handleSortChange = (option) => {
+    setSortOption(option);
   };
 
   // Get stock status and color
@@ -124,9 +154,7 @@ const ProductList = () => {
 
   // Get stock icon
   const getStockIcon = (stock) => {
-    if (stock === 0) {
-      return <FaExclamationTriangle className="me-1" />;
-    } else if (stock <= 5) {
+    if (stock === 0 || stock <= 5) {
       return <FaExclamationTriangle className="me-1" />;
     }
     return null;
@@ -176,24 +204,43 @@ const ProductList = () => {
     navigate(`/product/${productId}`);
   };
 
+  const clearAllFilters = () => {
+    setSearchTerm("");
+    setSelectedCategory("all");
+    setSortOption("");
+  };
+
   if (loading) {
     return (
-      <div className="text-center py-5">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
+      <div className="container mt-4">
+        <div className="text-center py-5">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="mt-2">Loading products...</p>
         </div>
-        <p className="mt-2">Loading products...</p>
       </div>
     );
   }
 
   return (
-    <div>
-      {/* Search and Filter Section */}
+    <div className="container mt-4">
+      {/* Header Section */}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2>All Products</h2>
+        <button 
+          className="btn btn-outline-primary btn-sm"
+          onClick={loadProducts}
+        >
+          Refresh Products
+        </button>
+      </div>
+
+      {/* Search, Filter and Sort Section */}
       <div className="row mb-4">
-        <div className="col-md-6">
-          <div className="input-group">
-            <span className="input-group-text">
+        <div className="col-md-4">
+          <div className="input-group" style={{ width: "350px", height: "50px" }}>
+            <span className="input-group-text" style={{ height: "53px" }}>
               <FaSearch />
             </span>
             <input
@@ -205,7 +252,8 @@ const ProductList = () => {
             />
           </div>
         </div>
-        <div className="col-md-6">
+        
+        <div className="col-md-auto custom-filter">
           <div className="input-group">
             <span className="input-group-text">
               <FaFilter />
@@ -224,7 +272,146 @@ const ProductList = () => {
             </select>
           </div>
         </div>
+
+        <div className="col-md-4">
+          <div className="dropdown">
+            <button 
+              className="btn btn-outline-secondary dropdown-toggle w-90"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <FaSort className="me-2" />
+              Sorted List: {
+                sortOption === "price_low_high" ? "Price: Low to High" :
+                sortOption === "price_high_low" ? "Price: High to Low" :
+                sortOption === "name_asc" ? "Name: A-Z" :
+                sortOption === "name_desc" ? "Name: Z-A" :
+                sortOption === "rating_high_low" ? "Rating: High to Low" :
+                sortOption === "stock_high_low" ? "Stock: High to Low" :
+                ""
+              }
+            </button>
+            <ul className="dropdown-menu w-100">
+              <li>
+                <button 
+                  className="dropdown-item"
+                  onClick={() => handleSortChange("")}
+                >
+                  No Sorted
+                </button>
+              </li>
+              <li><hr className="dropdown-divider" /></li>
+              <li>
+                <button 
+                  className="dropdown-item"
+                  onClick={() => handleSortChange("price_low_high")}
+                >
+                  <FaSortUp className="me-2" />
+                  Price: Low to High
+                </button>
+              </li>
+              <li>
+                <button 
+                  className="dropdown-item"
+                  onClick={() => handleSortChange("price_high_low")}
+                >
+                  <FaSortDown className="me-2" />
+                  Price: High to Low
+                </button>
+              </li>
+              <li><hr className="dropdown-divider" /></li>
+              <li>
+                <button 
+                  className="dropdown-item"
+                  onClick={() => handleSortChange("name_asc")}
+                >
+                  Name: A-Z
+                </button>
+              </li>
+              <li>
+                <button 
+                  className="dropdown-item"
+                  onClick={() => handleSortChange("name_desc")}
+                >
+                  Name: Z-A
+                </button>
+              </li>
+              <li><hr className="dropdown-divider" /></li>
+              <li>
+                <button 
+                  className="dropdown-item"
+                  onClick={() => handleSortChange("rating_high_low")}
+                >
+                  Rating: High to Low
+                </button>
+              </li>
+              <li>
+                <button 
+                  className="dropdown-item"
+                  onClick={() => handleSortChange("stock_high_low")}
+                >
+                  Stock: High to Low
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
+
+      {/* Active Filters Display */}
+      {(searchTerm || selectedCategory !== "all" || sortOption) && (
+        <div className="row mb-3">
+          <div className="col-12">
+            <div className="d-flex align-items-center gap-2 flex-wrap">
+              <small className="text-muted">Active filters:</small>
+              {searchTerm && (
+                <span className="badge bg-primary">
+                  Search: {searchTerm}
+                  <button 
+                    className="btn-close btn-close-white ms-1"
+                    style={{ fontSize: '0.6rem' }}
+                    onClick={() => setSearchTerm("")}
+                  ></button>
+                </span>
+              )}
+              {selectedCategory !== "all" && (
+                <span className="badge bg-info">
+                  Category: {selectedCategory}
+                  <button 
+                    className="btn-close btn-close-white ms-1"
+                    style={{ fontSize: '0.6rem' }}
+                    onClick={() => setSelectedCategory("all")}
+                  ></button>
+                </span>
+              )}
+              {sortOption && (
+                <span className="badge bg-warning text-dark">
+                  Sort: {
+                    sortOption === "price_low_high" ? "Price: Low to High" :
+                    sortOption === "price_high_low" ? "Price: High to Low" :
+                    sortOption === "name_asc" ? "Name: A-Z" :
+                    sortOption === "name_desc" ? "Name: Z-A" :
+                    sortOption === "rating_high_low" ? "Rating: High to Low" :
+                    "Stock: High to Low"
+                  }
+                  <button 
+                    className="btn-close ms-1"
+                    style={{ fontSize: '0.6rem' }}
+                    onClick={() => setSortOption("")}
+                  ></button>
+                </span>
+              )}
+              <button 
+                className="btn btn-outline-danger btn-sm"
+                onClick={clearAllFilters}
+              >
+                Clear All
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Products Count with Stock Summary */}
       <div className="d-flex justify-content-between align-items-center mb-4">
@@ -232,7 +419,7 @@ const ProductList = () => {
           <h5 className="mb-1">
             {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'} found
           </h5>
-          <div className="d-flex gap-3">
+          <div className="d-flex gap-3 flex-wrap">
             <small className="text-success">
               <strong>
                 {filteredProducts.filter(p => p.stock > 10).length} High Stock
@@ -255,12 +442,6 @@ const ProductList = () => {
             </small>
           </div>
         </div>
-        <button 
-          className="btn btn-outline-primary btn-sm"
-          onClick={loadProducts}
-        >
-          Refresh Products
-        </button>
       </div>
 
       {/* Products Grid */}
@@ -271,12 +452,9 @@ const ProductList = () => {
           <p className="text-muted">Try adjusting your search or filter criteria</p>
           <button 
             className="btn btn-primary"
-            onClick={() => {
-              setSearchTerm("");
-              setSelectedCategory("all");
-            }}
+            onClick={clearAllFilters}
           >
-            Clear Filters
+            Clear All Filters
           </button>
         </div>
       ) : (
@@ -362,7 +540,7 @@ const ProductList = () => {
 
                     <div className="d-flex justify-content-between align-items-center mb-2">
                       <span className="h5 text-primary mb-0">
-                        ${typeof product.price === 'number' ? product.price.toFixed(2) : parseFloat(product.price).toFixed(2)}
+                        ₹ {typeof product.price === 'number' ? product.price.toFixed(2) : parseFloat(product.price).toFixed(2)}
                       </span>
                       <div className="d-flex align-items-center">
                         <span className="text-warning me-1">
@@ -421,25 +599,6 @@ const ProductList = () => {
           })}
         </div>
       )}
-
-      <style jsx>{`
-        .product-card {
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .product-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        .cursor-pointer {
-          cursor: pointer;
-        }
-        .card-img-top:hover img {
-          transform: scale(1.05);
-        }
-        .progress {
-          background-color: #e9ecef;
-        }
-      `}</style>
     </div>
   );
 };

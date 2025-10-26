@@ -202,7 +202,7 @@ const ProductDetail = () => {
               
               <div className="d-flex align-items-center mb-3">
                 <span className="h3 text-primary me-3">
-                  ${typeof product.price === 'number' ? product.price.toFixed(2) : parseFloat(product.price).toFixed(2)}
+                  ₹ {typeof product.price === 'number' ? product.price.toFixed(2) : parseFloat(product.price).toFixed(2)}
                 </span>
                 <div className="d-flex align-items-center">
                   <span className="text-warning me-1">⭐</span>
@@ -260,7 +260,7 @@ const ProductDetail = () => {
                       className="btn btn-primary btn-lg"
                       onClick={handleBuyNow}
                     >
-                      Buy Now - ${(product.price * quantity).toFixed(2)}
+                      Buy Now - ₹ {(product.price * quantity).toFixed(2)}
                     </button>
                     
                     <div className="d-flex gap-2">
