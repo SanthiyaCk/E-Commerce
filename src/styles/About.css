@@ -1,0 +1,155 @@
+/* ================================
+   About Page Styling - Sandy's Store
+================================ */
+
+.about-page {
+  font-family: "Poppins", sans-serif;
+  background: #f9fbfd;
+  color: #333;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+/* Headings & text colors */
+.about-text-primary {
+  color: #0d6efd; /* Bootstrap primary blue */
+}
+
+.about-text-muted {
+  color: #6c757d;
+}
+
+/* Section layout */
+.about-section {
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+/* Cards */
+.about-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.about-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.about-card .card-body {
+  padding: 1.8rem;
+}
+
+/* Features Section */
+.feature-item {
+  background: #f8faff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: background 0.3s, transform 0.3s;
+  border: 1px solid #e8efff;
+}
+
+.feature-item:hover {
+  background: #eef4ff;
+  transform: translateY(-2px);
+}
+
+.feature-item span {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+/* Contact Info */
+.contact-info {
+  background: #fdfdfe;
+  border-left: 4px solid #0d6efd;
+  padding: 12px 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(13, 110, 253, 0.05);
+  transition: all 0.3s ease;
+}
+
+.contact-info:hover {
+  background: #f4f8ff;
+  transform: translateY(-2px);
+}
+
+/* CTA Buttons */
+.about-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.about-btn-primary {
+  background: linear-gradient(135deg, #0d6efd, #4dabf7);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+}
+
+.about-btn-primary:hover {
+  background: linear-gradient(135deg, #0b5ed7, #1a73e8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(13, 110, 253, 0.35);
+}
+
+.about-btn-outline {
+  background: transparent;
+  border: 2px solid #0d6efd;
+  color: #0d6efd;
+}
+
+.about-btn-outline:hover {
+  background: #0d6efd;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-card .card-body {
+    padding: 1.2rem;
+  }
+
+  .about-btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .feature-item {
+    text-align: center;
+    padding: 15px;
+  }
+
+  .about-page h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-page p {
+    font-size: 0.95rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

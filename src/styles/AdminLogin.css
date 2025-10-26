@@ -1,0 +1,218 @@
+/* ==============================
+   Admin Login Page
+============================== */
+.admin-login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dbefff;
+  font-family: "Poppins", sans-serif;
+  padding: 20px;
+}
+
+/* ==============================
+   Login Card
+============================== */
+.login-card {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-avatar {
+  background-color: #e3f0ff;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #0d6efd;
+}
+
+.login-card h2 {
+  margin-bottom: 20px;
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #842029;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+/* ==============================
+   Input Fields
+============================== */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 40px;
+  border-radius: 8px;
+  border: 1.5px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #0d6efd;
+  font-size: 1rem;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #0d6efd;
+  font-size: 1rem;
+}
+
+/* ==============================
+   Options (Remember / Forgot)
+============================== */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.login-options input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.forgot-password {
+  cursor: pointer;
+  color: #0d6efd;
+  text-decoration: underline;
+}
+
+/* ==============================
+   Button
+============================== */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background-color: #0d6efd;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+}
+
+/* ==============================
+   Responsive Design
+============================== */
+
+/* --- For tablets --- */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 30px 25px;
+    max-width: 340px;
+  }
+
+  .login-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .login-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .input-group input {
+    font-size: 0.95rem;
+  }
+}
+
+/* --- For small mobile devices --- */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 25px 20px;
+    max-width: 300px;
+  }
+
+  .login-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .login-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .input-group input {
+    padding: 10px 35px;
+    font-size: 0.9rem;
+  }
+
+  .login-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.8rem;
+  }
+
+  .login-btn {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+/* --- For very small devices (like old phones) --- */
+@media (max-width: 360px) {
+  .login-card {
+    padding: 20px;
+  }
+
+  .login-card h2 {
+    font-size: 1.1rem;
+  }
+
+  .login-avatar {
+    width: 55px;
+    height: 55px;
+  }
+
+  .login-btn {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+}

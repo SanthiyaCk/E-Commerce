@@ -1,0 +1,182 @@
+/* Footer Professional Styles */
+footer {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%) !important;
+  position: relative;
+  overflow: hidden;
+  margin-top: auto !important;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Footer Brand Styling */
+.footer-brand h5 {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-brand h5::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+/* Link Hover Effects */
+footer a {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+footer a::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.3s ease;
+}
+
+footer a:hover {
+  color: #fff !important;
+  opacity: 1 !important;
+  transform: translateX(5px);
+}
+
+footer a:hover::before {
+  width: 100%;
+}
+
+/* Section Headers */
+footer h6 {
+  color: #e2e8f0;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+footer h6::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+/* Contact Info Icons */
+footer .text-light.opacity-75 small div {
+  transition: all 0.3s ease;
+  padding: 2px 0;
+}
+
+footer .text-light.opacity-75 small div:hover {
+  color: #fff !important;
+  opacity: 1 !important;
+  transform: translateX(3px);
+}
+
+/* Divider Styling */
+footer hr {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  background: linear-gradient(90deg, transparent, #667eea, transparent);
+  height: 1px;
+  opacity: 0.3;
+}
+
+/* Bottom Section */
+footer .text-muted {
+  transition: color 0.3s ease;
+}
+
+footer .text-muted:hover {
+  color: #cbd5e0 !important;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+footer .text-primary {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  footer {
+    text-align: center;
+  }
+  
+  .footer-brand h5::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  footer h6::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  footer .row > div {
+    margin-bottom: 2rem;
+  }
+  
+  footer a:hover {
+    transform: translateX(0);
+  }
+}
+
+/* Smooth Transitions */
+footer * {
+  transition: all 0.3s ease;
+}
+
+/* Focus States for Accessibility */
+footer a:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Selection Color */
+footer ::selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: white;
+}
+
+footer ::-moz-selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: white;
+}
